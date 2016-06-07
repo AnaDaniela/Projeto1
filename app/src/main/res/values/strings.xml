@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Projeto</string>
+    <string name="Button_search" />
+    <string name="Projeto" />
+    <string name="Button_add" />
+
+
+    <string-array name="planets_array">
+            <item>All</item>
+            <item>Artista</item>
+            <item>Album</item>
+        </string-array>
+</resources>

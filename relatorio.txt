@@ -1,0 +1,269 @@
+# NÚMERO E NOME DOS ESTUDANTES
+Ana Ferreira nº 2150261
+Bruno Bento nº2150257
+# FUNCIONALIDADES IMPLEMENTADAS
+Pesquisa
+Adicionar album
+As musicas
+# FUNCIONALIDADES NÃO IMPLEMENTADAS OU APENAS PARCIALMENTE IMPLEMENTADAS
+Tentamos colocar a avaliação das musicas, mas nao consegui-mos.
+# DESCRIÇÃO DAS FUNCIONALIDADES EXTRA
+
+# OBSERVAÇÕES
+
+# CÓDIGO DA(S) CLASSE(S) JAVA
+package pt.adminis.projeto;
+
+        import android.app.AlertDialog;
+        import android.content.DialogInterface;
+        import android.net.Uri;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.widget.ArrayAdapter;
+        import android.widget.EditText;
+        import android.widget.ListView;
+        import android.widget.Spinner;
+        import android.widget.Toast;
+
+        import com.google.android.gms.appindexing.Action;
+        import com.google.android.gms.common.api.GoogleApiClient;
+
+        import java.util.ArrayList;
+
+        import static pt.adminis.projeto.AppIndex.*;
+
+        public class MainActivity extends AppCompatActivity {
+
+                private ArrayList<String> music;
+                /**
+                 * ATTENTION: This was auto-generated to implement the App Indexing API.
+                 * See https://g.co/AppIndexing/AndroidStudio for more information.
+                 */
+                protected GoogleApiClient client;
+                private ArrayList<String> Projeto;
+
+                public MainActivity() {
+                        client = AppIndex.;
+                }
+
+
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                        super.onCreate(savedInstanceState);
+                        setContentView(R.layout.activity_main);
+
+                        Projeto = new ArrayList<String>();
+
+                        music.add("Charlie Puth | One Call away");
+                        music.add("Djodje | Txukinha");
+                        music.add("Boss AC | A Carta que eu nunca te escrevi");
+                        music.add("Carlão | Na Batalha");
+                        music.add("Kova M | Fronta");
+                        music.add("Empire[cast] | Conqueror");
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                                android.R.layout.simple_list_item_1, music);
+
+                        ListView listView = (ListView) findViewById(R.id.listView_musics);
+                        ArrayAdapter<CharSequence> adaptere = null;
+                        listView.setAdapter(adaptere);
+                        //Código para Spinner
+                        //
+                        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+                        // Create an ArrayAdapter using the string array and a default spinner layout
+                        adaptere = ArrayAdapter.createFromResource(this,
+                                R.array.planets_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+                        adaptere.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+                        spinner.setAdapter(adaptere);
+                        // ATTENTION: This was auto-generated to implement the App Indexing API.
+                        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
+                }
+
+                public void onClick_search(View view) {
+                        //ir buscar as referências para a editText, o spinner e a listView
+                        EditText et = (EditText) findViewById(R.id.editText_search);
+                        Spinner sp = (Spinner) findViewById(R.id.spinner_search);
+                        ListView lv = (ListView) findViewById(R.id.listView_musics);
+
+                        //criar uma nova lista, que guarde os contactos pesquisados
+                        ArrayList<String> searchedmusic = new ArrayList<>();
+
+                        //percorrer todos os contactos, e adicionar os que contêm
+                        //o termo a pesquisar à nova lista
+                        String termo = et.getText().toString();
+                        String categoria = sp.getSelectedItem().toString();
+
+                        for (String c : music) {
+                                if (c.contains(termo)) ;
+                                {
+                                        searchedmusic.add(c);
+                                }
+                        }  if (categoria.equals("Name")) {
+                                //pesquisar pelo nome
+                                for (String c: music) {
+                                        String[] split = c.split("\\|");
+                                        String name = split[0];
+                                        if (name.contains(termo)){
+                                                searchedmusic.add(c);
+                                        }
+                                }
+                        }else if (categoria.equals("Album")) {
+                                //pesquisar pelo Album
+                                for (String c: music) {
+                                        String[] split = c.split("\\|");
+                                        String phone = split[1];
+                                        if (phone.contains(termo)){
+                                                searchedmusic.add(c);
+                                        }
+                                }
+                        }
+                        //mostrar o conteudo da lista de musicas pesquisados na Listview
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                                android.R.layout.simple_list_item_1, searchedmusic);
+                        lv.setAdapter(adapter);
+
+                        //mostrar uma mensagem a dizer "Showing searched ."
+                        Toast.makeText(MainActivity.this, "Showing searched", Toast.LENGTH_SHORT).show();
+                }
+
+                public void onClick_add(View view) {
+                        Toast.makeText(MainActivity.this, "Escolha a musica", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        // Get the layout inflater
+                        LayoutInflater inflater = this.getLayoutInflater();
+
+                        // Inflate and set the layout for the dialog
+                        // Pass null as the parent view because its going in the dialog layout
+                        builder.setView(inflater.inflate(R.layout.dialog_add, null));
+                        // Add the buttons
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                        // User clicked OK button
+                                        Toast.makeText(MainActivity.this, "carreguei no Ok",Toast.LENGTH_SHORT).show();
+                                }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                        // User cancelled the dialog
+                                        Toast.makeText(MainActivity.this, "carreguei no cancel",Toast.LENGTH_SHORT).show();
+
+                                }
+                        });
+                        // Set other dialog propertie
+
+                        builder.setMessage("Introduza o nome do cantor");
+                        // Create the AlertDialog
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                }
+
+                @Override
+                public void onStart() {
+                        super.onStart();
+
+                        // ATTENTION: This was auto-generated to implement the App Indexing API.
+                        // See https://g.co/AppIndexing/AndroidStudio for more information.
+                        client.connect();
+                        Action viewAction = Action.newAction(
+                                Action.TYPE_VIEW, // TODO: choose an action type.
+                                "Main Page", // TODO: Define a title for the content shown.
+                                // TODO: If you have web page content that matches this app activity's content,
+                                // make sure this auto-generated web page URL is correct.
+                                // Otherwise, set the URL to null.
+                                Uri.parse("http://host/path"),
+                                // TODO: Make sure this auto-generated app deep link URI is correct.
+                                Uri.parse("android-app://pt.adminis.projeto/http/host/path")
+                        );
+                        com.google.android.gms.appindexing.AppIndex.AppIndexApi.start(client, viewAction);
+                }
+
+                @Override
+                public void onStop() {
+                        super.onStop();
+
+                        // ATTENTION: This was auto-generated to implement the App Indexing API.
+                        // See https://g.co/AppIndexing/AndroidStudio for more information.
+                        Action viewAction = Action.newAction(
+                                Action.TYPE_VIEW, // TODO: choose an action type.
+                                "Main Page", // TODO: Define a title for the content shown.
+                                // TODO: If you have web page content that matches this app activity's content,
+                                // make sure this auto-generated web page URL is correct.
+                                // Otherwise, set the URL to null.
+                                Uri.parse("http://host/path"),
+                                // TODO: Make sure this auto-generated app deep link URI is correct.
+                                Uri.parse("android-app://pt.adminis.projeto/http/host/path")
+                        );
+                        com.google.android.gms.appindexing.AppIndex.AppIndexApi.end(client, viewAction);
+                        client.disconnect();
+                }
+        }
+# CÓDIGO DO(S) LAYOUT(S) XML
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_search"
+            android:text="@string/Projeto"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_search" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button_search"
+        android:onClick="onClick_search"
+        android:layout_gravity="right" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Album"
+        android:id="@+id/button" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_musics"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Button_add"
+        android:id="@+id/button_add"
+        android:layout_gravity="right"
+        android:onClick="onClick_add" />
+
+</LinearLayout>
+
+

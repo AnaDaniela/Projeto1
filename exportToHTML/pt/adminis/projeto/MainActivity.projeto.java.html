@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>MainActivity.projeto.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.projeto.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">pt.adminis.projeto; 
+ 
+        </span><span class="s0">import </span><span class="s1">android.app.AlertDialog; 
+        </span><span class="s0">import </span><span class="s1">android.content.DialogInterface; 
+        </span><span class="s0">import </span><span class="s1">android.net.Uri; 
+        </span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+        </span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+        </span><span class="s0">import </span><span class="s1">android.view.LayoutInflater; 
+        </span><span class="s0">import </span><span class="s1">android.view.View; 
+        </span><span class="s0">import </span><span class="s1">android.widget.ArrayAdapter; 
+        </span><span class="s0">import </span><span class="s1">android.widget.EditText; 
+        </span><span class="s0">import </span><span class="s1">android.widget.ListView; 
+        </span><span class="s0">import </span><span class="s1">android.widget.Spinner; 
+        </span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+        </span><span class="s0">import </span><span class="s1">com.google.android.gms.appindexing.Action; 
+        </span><span class="s0">import </span><span class="s1">com.google.android.gms.common.api.GoogleApiClient; 
+ 
+        </span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+ 
+        </span><span class="s0">import static </span><span class="s1">pt.adminis.projeto.AppIndex.*; 
+ 
+        </span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+ 
+                </span><span class="s0">private </span><span class="s1">ArrayList&lt;String&gt; music; 
+                </span><span class="s2">/** 
+                 * ATTENTION: This was auto-generated to implement the App Indexing API. 
+                 * See https://g.co/AppIndexing/AndroidStudio for more information. 
+                 */</span><span class="s1"> 
+                </span><span class="s0">protected </span><span class="s1">GoogleApiClient client; 
+                </span><span class="s0">private </span><span class="s1">ArrayList&lt;String&gt; Projeto; 
+ 
+                </span><span class="s0">public </span><span class="s1">MainActivity() { 
+                        client = AppIndex.; 
+                } 
+ 
+ 
+                @Override 
+                </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+                        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+                        setContentView(R.layout.activity_main); 
+ 
+                        Projeto = </span><span class="s0">new </span><span class="s1">ArrayList&lt;String&gt;(); 
+ 
+                        music.add(</span><span class="s3">&quot;Charlie Puth | One Call away&quot;</span><span class="s1">); 
+                        music.add(</span><span class="s3">&quot;Djodje | Txukinha&quot;</span><span class="s1">); 
+                        music.add(</span><span class="s3">&quot;Boss AC | A Carta que eu nunca te escrevi&quot;</span><span class="s1">); 
+                        music.add(</span><span class="s3">&quot;Carlão | Na Batalha&quot;</span><span class="s1">); 
+                        music.add(</span><span class="s3">&quot;Kova M | Fronta&quot;</span><span class="s1">); 
+                        music.add(</span><span class="s3">&quot;Empire[cast] | Conqueror&quot;</span><span class="s1">); 
+ 
+                        ArrayAdapter&lt;String&gt; adapter = </span><span class="s0">new </span><span class="s1">ArrayAdapter&lt;String&gt;(</span><span class="s0">this</span><span class="s1">, 
+                                android.R.layout.simple_list_item_1, music); 
+ 
+                        ListView listView = (ListView) findViewById(R.id.listView_musics); 
+                        ArrayAdapter&lt;CharSequence&gt; adaptere = </span><span class="s0">null</span><span class="s1">; 
+                        listView.setAdapter(adaptere); 
+                        </span><span class="s2">//Código para Spinner</span><span class="s1"> 
+                        </span><span class="s2">//</span><span class="s1"> 
+                        Spinner spinner = (Spinner) findViewById(R.id.spinner); 
+                        </span><span class="s2">// Create an ArrayAdapter using the string array and a default spinner layout</span><span class="s1"> 
+                        adaptere = ArrayAdapter.createFromResource(</span><span class="s0">this</span><span class="s1">, 
+                                R.array.planets_array, android.R.layout.simple_spinner_item); 
+</span><span class="s2">// Specify the layout to use when the list of choices appears</span><span class="s1"> 
+                        adaptere.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+</span><span class="s2">// Apply the adapter to the spinner</span><span class="s1"> 
+                        spinner.setAdapter(adaptere); 
+                        </span><span class="s2">// ATTENTION: This was auto-generated to implement the App Indexing API.</span><span class="s1"> 
+                        </span><span class="s2">// See https://g.co/AppIndexing/AndroidStudio for more information.</span><span class="s1"> 
+ 
+                } 
+ 
+                </span><span class="s0">public void </span><span class="s1">onClick_search(View view) { 
+                        </span><span class="s2">//ir buscar as referências para a editText, o spinner e a listView</span><span class="s1"> 
+                        EditText et = (EditText) findViewById(R.id.editText_search); 
+                        Spinner sp = (Spinner) findViewById(R.id.spinner_search); 
+                        ListView lv = (ListView) findViewById(R.id.listView_musics); 
+ 
+                        </span><span class="s2">//criar uma nova lista, que guarde os contactos pesquisados</span><span class="s1"> 
+                        ArrayList&lt;String&gt; searchedmusic = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;(); 
+ 
+                        </span><span class="s2">//percorrer todos os contactos, e adicionar os que contêm</span><span class="s1"> 
+                        </span><span class="s2">//o termo a pesquisar à nova lista</span><span class="s1"> 
+                        String termo = et.getText().toString(); 
+                        String categoria = sp.getSelectedItem().toString(); 
+ 
+                        </span><span class="s0">for </span><span class="s1">(String c : music) { 
+                                </span><span class="s0">if </span><span class="s1">(c.contains(termo)) ; 
+                                { 
+                                        searchedmusic.add(c); 
+                                } 
+                        }  </span><span class="s0">if </span><span class="s1">(categoria.equals(</span><span class="s3">&quot;Name&quot;</span><span class="s1">)) { 
+                                </span><span class="s2">//pesquisar pelo nome</span><span class="s1"> 
+                                </span><span class="s0">for </span><span class="s1">(String c: music) { 
+                                        String[] split = c.split(</span><span class="s3">&quot;</span><span class="s0">\\</span><span class="s3">|&quot;</span><span class="s1">); 
+                                        String name = split[</span><span class="s4">0</span><span class="s1">]; 
+                                        </span><span class="s0">if </span><span class="s1">(name.contains(termo)){ 
+                                                searchedmusic.add(c); 
+                                        } 
+                                } 
+                        }</span><span class="s0">else if </span><span class="s1">(categoria.equals(</span><span class="s3">&quot;Album&quot;</span><span class="s1">)) { 
+                                </span><span class="s2">//pesquisar pelo Album</span><span class="s1"> 
+                                </span><span class="s0">for </span><span class="s1">(String c: music) { 
+                                        String[] split = c.split(</span><span class="s3">&quot;</span><span class="s0">\\</span><span class="s3">|&quot;</span><span class="s1">); 
+                                        String phone = split[</span><span class="s4">1</span><span class="s1">]; 
+                                        </span><span class="s0">if </span><span class="s1">(phone.contains(termo)){ 
+                                                searchedmusic.add(c); 
+                                        } 
+                                } 
+                        } 
+                        </span><span class="s2">//mostrar o conteudo da lista de musicas pesquisados na Listview</span><span class="s1"> 
+                        ArrayAdapter&lt;String&gt; adapter = </span><span class="s0">new </span><span class="s1">ArrayAdapter&lt;String&gt;(</span><span class="s0">this</span><span class="s1">, 
+                                android.R.layout.simple_list_item_1, searchedmusic); 
+                        lv.setAdapter(adapter); 
+ 
+                        </span><span class="s2">//mostrar uma mensagem a dizer &quot;Showing searched .&quot;</span><span class="s1"> 
+                        Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Showing searched&quot;</span><span class="s1">, Toast.LENGTH_SHORT).show(); 
+                } 
+ 
+                </span><span class="s0">public void </span><span class="s1">onClick_add(View view) { 
+                        Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Escolha a musica&quot;</span><span class="s1">, Toast.LENGTH_SHORT).show(); 
+                        AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(</span><span class="s0">this</span><span class="s1">); 
+ 
+                        </span><span class="s2">// Get the layout inflater</span><span class="s1"> 
+                        LayoutInflater inflater = </span><span class="s0">this</span><span class="s1">.getLayoutInflater(); 
+ 
+                        </span><span class="s2">// Inflate and set the layout for the dialog</span><span class="s1"> 
+                        </span><span class="s2">// Pass null as the parent view because its going in the dialog layout</span><span class="s1"> 
+                        builder.setView(inflater.inflate(R.layout.dialog_add, </span><span class="s0">null</span><span class="s1">)); 
+                        </span><span class="s2">// Add the buttons</span><span class="s1"> 
+                        builder.setPositiveButton(</span><span class="s3">&quot;OK&quot;</span><span class="s1">, </span><span class="s0">new </span><span class="s1">DialogInterface.OnClickListener() { 
+                                </span><span class="s0">public void </span><span class="s1">onClick(DialogInterface dialog, </span><span class="s0">int </span><span class="s1">id) { 
+                                        </span><span class="s2">// User clicked OK button</span><span class="s1"> 
+                                        Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;carreguei no Ok&quot;</span><span class="s1">,Toast.LENGTH_SHORT).show(); 
+                                } 
+                        }); 
+                        builder.setNegativeButton(</span><span class="s3">&quot;Cancel&quot;</span><span class="s1">, </span><span class="s0">new </span><span class="s1">DialogInterface.OnClickListener() { 
+                                </span><span class="s0">public void </span><span class="s1">onClick(DialogInterface dialog, </span><span class="s0">int </span><span class="s1">id) { 
+                                        </span><span class="s2">// User cancelled the dialog</span><span class="s1"> 
+                                        Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;carreguei no cancel&quot;</span><span class="s1">,Toast.LENGTH_SHORT).show(); 
+ 
+                                } 
+                        }); 
+                        </span><span class="s2">// Set other dialog propertie</span><span class="s1"> 
+ 
+                        builder.setMessage(</span><span class="s3">&quot;Introduza o nome do cantor&quot;</span><span class="s1">); 
+                        </span><span class="s2">// Create the AlertDialog</span><span class="s1"> 
+                        AlertDialog dialog = builder.create(); 
+                        dialog.show(); 
+ 
+                } 
+ 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onStart() { 
+                        </span><span class="s0">super</span><span class="s1">.onStart(); 
+ 
+                        </span><span class="s2">// ATTENTION: This was auto-generated to implement the App Indexing API.</span><span class="s1"> 
+                        </span><span class="s2">// See https://g.co/AppIndexing/AndroidStudio for more information.</span><span class="s1"> 
+                        client.connect(); 
+                        Action viewAction = Action.newAction( 
+                                Action.TYPE_VIEW, </span><span class="s2">// TODO: choose an action type.</span><span class="s1"> 
+                                </span><span class="s3">&quot;Main Page&quot;</span><span class="s1">, </span><span class="s2">// TODO: Define a title for the content shown.</span><span class="s1"> 
+                                </span><span class="s2">// TODO: If you have web page content that matches this app activity's content,</span><span class="s1"> 
+                                </span><span class="s2">// make sure this auto-generated web page URL is correct.</span><span class="s1"> 
+                                </span><span class="s2">// Otherwise, set the URL to null.</span><span class="s1"> 
+                                Uri.parse(</span><span class="s3">&quot;http://host/path&quot;</span><span class="s1">), 
+                                </span><span class="s2">// TODO: Make sure this auto-generated app deep link URI is correct.</span><span class="s1"> 
+                                Uri.parse(</span><span class="s3">&quot;android-app://pt.adminis.projeto/http/host/path&quot;</span><span class="s1">) 
+                        ); 
+                        com.google.android.gms.appindexing.AppIndex.AppIndexApi.start(client, viewAction); 
+                } 
+ 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onStop() { 
+                        </span><span class="s0">super</span><span class="s1">.onStop(); 
+ 
+                        </span><span class="s2">// ATTENTION: This was auto-generated to implement the App Indexing API.</span><span class="s1"> 
+                        </span><span class="s2">// See https://g.co/AppIndexing/AndroidStudio for more information.</span><span class="s1"> 
+                        Action viewAction = Action.newAction( 
+                                Action.TYPE_VIEW, </span><span class="s2">// TODO: choose an action type.</span><span class="s1"> 
+                                </span><span class="s3">&quot;Main Page&quot;</span><span class="s1">, </span><span class="s2">// TODO: Define a title for the content shown.</span><span class="s1"> 
+                                </span><span class="s2">// TODO: If you have web page content that matches this app activity's content,</span><span class="s1"> 
+                                </span><span class="s2">// make sure this auto-generated web page URL is correct.</span><span class="s1"> 
+                                </span><span class="s2">// Otherwise, set the URL to null.</span><span class="s1"> 
+                                Uri.parse(</span><span class="s3">&quot;http://host/path&quot;</span><span class="s1">), 
+                                </span><span class="s2">// TODO: Make sure this auto-generated app deep link URI is correct.</span><span class="s1"> 
+                                Uri.parse(</span><span class="s3">&quot;android-app://pt.adminis.projeto/http/host/path&quot;</span><span class="s1">) 
+                        ); 
+                        com.google.android.gms.appindexing.AppIndex.AppIndexApi.end(client, viewAction); 
+                        client.disconnect(); 
+                } 
+        }</span></pre>
+</body>
+</html>
